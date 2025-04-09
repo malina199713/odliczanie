@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Odliczanie do Ślubu</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
     body, html {
       margin: 0;
       padding: 0;
-      height: 100%;
       width: 100%;
+      height: 100%;
       background: url('tlo.jpg') no-repeat center center fixed;
       background-size: contain;
       font-family: 'Arial', sans-serif;
     }
     .countdown-container {
       position: absolute;
-      top: 57%; /* Pozycja pomiędzy postaciami a datą */
+      top: 55%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
     }
-    .countdown {
-      font-size: 1.8rem;
-      background-color: rgba(0, 0, 0, 0.5);
+    #countdown {
+      display: inline-block;
       padding: 10px 20px;
-      border-radius: 15px;
-      color: #fff;
+      font-size: 1.8rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
       white-space: nowrap;
     }
   </style>
 </head>
 <body>
+
   <div class="countdown-container">
-    <div class="countdown" id="countdown">Ładowanie...</div>
+    <div id="countdown">Ładowanie...</div>
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const countdownElement = document.getElementById("countdown");
-      const targetDate = new Date("2025-07-12T16:00:00").getTime();
+    const countdownElement = document.getElementById("countdown");
+    const weddingDate = new Date("2025-07-12T16:00:00").getTime();
 
-      function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
 
-        if (distance <= 0) {
-          countdownElement.innerHTML = "To już dziś!";
-          return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        countdownElement.innerHTML = `${days} dni, ${hours} godz., ${minutes} min, ${seconds} sek`;
+      if (distance <= 0) {
+        countdownElement.innerText = "To już dziś!";
+        return;
       }
 
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-    });
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownElement.innerText = `${days} dni, ${hours} godz., ${minutes} min, ${seconds} sek`;
+    }
+
+    updateCountdown(); // wywołaj od razu
+    setInterval(updateCountdown, 1000); // aktualizuj co sekundę
   </script>
+
 </body>
 </html>
