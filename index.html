@@ -32,6 +32,7 @@
       background: rgba(0, 0, 0, 0.5);
       border-radius: 20px;
       white-space: nowrap;
+      text-shadow: 0 0 5px black;
     }
   </style>
 </head>
@@ -42,28 +43,30 @@
   </div>
 
   <script>
-    const countdownElement = document.getElementById("countdown");
-    const weddingDate = new Date("2025-07-12T16:00:00").getTime();
+    window.onload = function () {
+      const countdownElement = document.getElementById("countdown");
+      const weddingDate = new Date("2025-07-12T16:00:00").getTime();
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
 
-      if (distance <= 0) {
-        countdownElement.innerText = "To już dziś!";
-        return;
+        if (distance <= 0) {
+          countdownElement.innerText = "To już dziś!";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownElement.innerText = `${days} dni, ${hours} godz., ${minutes} min, ${seconds} sek`;
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdownElement.innerText = `${days} dni, ${hours} godz., ${minutes} min, ${seconds} sek`;
-    }
-
-    updateCountdown(); // wywołaj od razu
-    setInterval(updateCountdown, 1000); // aktualizuj co sekundę
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    };
   </script>
 
 </body>
