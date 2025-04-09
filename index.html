@@ -12,28 +12,26 @@
       height: 100%;
       width: 100%;
       background: url('tlo.jpg') no-repeat center center fixed;
-      background-size: 80%;
+      background-size: contain; /* Mniejsze powiększenie */
       background-repeat: no-repeat;
       background-position: center;
       font-family: 'Arial', sans-serif;
     }
     .countdown-container {
       position: absolute;
-      top: 40%;
+      top: 48%; /* Przesunięcie wyżej, między osobami a datą */
       left: 50%;
-      transform: translate(-50%, 0);
+      transform: translate(-50%, -50%);
       text-align: center;
       color: #fff;
     }
     .countdown {
-      font-size: 2.2rem;
+      font-size: 2rem;
       background-color: rgba(0, 0, 0, 0.5);
       padding: 10px 20px;
       border-radius: 15px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
+      display: inline-block;
+      white-space: nowrap; /* Wszystko w jednej linii */
     }
   </style>
 </head>
@@ -55,21 +53,4 @@
         return;
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdownElement.innerHTML = `
-        <span>${days} dni</span>
-        <span>${hours} godz.</span>
-        <span>${minutes} min</span>
-        <span>${seconds} sek</span>
-      `;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
-</body>
-</html>
+      const days = Math.floor(distance / (1000 * 60 * 60
