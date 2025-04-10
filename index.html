@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Odliczanie do Ślubu</title>
   <style>
     * {
@@ -19,20 +19,19 @@
     }
     .countdown-container {
       position: absolute;
-      top: 43%; /* podniesione, żeby nie zasłaniało głów */
+      top: 48%; /* delikatnie wyżej */
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
     }
     #countdown {
       display: inline-block;
-      padding: 6px 12px; /* zmniejszone wypełnienie */
-      font-size: 1.1rem; /* delikatnie mniejszy tekst */
+      padding: 8px 16px;
+      font-size: 1.2rem; /* delikatnie mniejszy */
       color: white;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.45); /* lekko jaśniejsze tło */
       border-radius: 20px;
       white-space: nowrap;
-      max-width: 90vw; /* zachowuje odstęp od boków */
     }
   </style>
 </head>
@@ -63,7 +62,7 @@
       countdownElement.innerText = `${days} dni, ${hours} godz., ${minutes} min, ${seconds} sek`;
     }
 
-    updateCountdown();
+    updateCountdown(); 
     setInterval(updateCountdown, 1000);
   </script>
 
