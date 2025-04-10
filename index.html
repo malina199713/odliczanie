@@ -13,15 +13,16 @@
     .hero {
       position: relative;
       height: 100vh;
-      background-image: url('tlo.jpg'); /* wstaw tu nazwę pliku tła */
+      background-image: url('tlo.jpg'); /* Zmień na swoją nazwę pliku */
       background-size: cover;
       background-position: center;
       color: white;
       text-align: center;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
+      padding-top: 80px;
     }
 
     .hero h1 {
@@ -37,19 +38,15 @@
 
     .hero p {
       font-size: 1.4rem;
-      margin: 5px 0 40px;
+      margin: 5px 0 30px;
     }
 
     .countdown {
-      position: absolute;
-      top: 45%; /* podnosi licznik znacznie do góry */
-      left: 50%;
-      transform: translate(-50%, -50%);
       background-color: rgba(0, 0, 0, 0.5);
-      padding: 10px 16px;
+      padding: 10px 18px;
       border-radius: 20px;
-      font-size: 1.4rem;
-      max-width: 92%; /* zostawia margines z boków */
+      font-size: 1.3rem;
+      max-width: 90%;
       text-align: center;
       white-space: nowrap;
     }
@@ -68,9 +65,9 @@
       }
 
       .countdown {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding: 8px 12px;
-        max-width: 92%;
+        max-width: 90%;
       }
     }
   </style>
@@ -91,4 +88,16 @@
       const now = new Date().getTime();
       const distance = targetDate - now;
 
-      const days = Math.floor(distance /
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days} dni, ${hours} godz., ${minutes} min, ${seconds} sek`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
