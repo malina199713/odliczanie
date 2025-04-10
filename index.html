@@ -27,7 +27,7 @@
     #countdown {
       display: inline-block;
       padding: 10px 20px;
-      font-size: 1.4rem;
+      font-size: 1.4rem; /* zmniejszony font */
       color: white;
       background: rgba(0, 0, 0, 0.5);
       border-radius: 20px;
@@ -43,15 +43,11 @@
 
   <script>
     const countdownElement = document.getElementById("countdown");
-
-    // Ustaw datę ślubu jako czas w UTC+2 (Polska w lecie)
-    const weddingDate = new Date(Date.UTC(2025, 6, 12, 14, 0, 0)).getTime(); 
-    // 12 lipca 2025, godz. 16:00 czasu polskiego = 14:00 UTC
+    const weddingDate = new Date("2025-07-12T16:00:00").getTime();
 
     function updateCountdown() {
-      const now = new Date();
-      const nowUTC = now.getTime() + now.getTimezoneOffset() * 60000; // przeliczenie na UTC
-      const distance = weddingDate - nowUTC;
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
 
       if (distance <= 0) {
         countdownElement.innerText = "To już dziś!";
@@ -66,81 +62,7 @@
       countdownElement.innerText = `${days} dni, ${hours} godz., ${minutes} min, ${seconds} sek`;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Odliczanie do Ślubu</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: url('tlo.jpg') no-repeat center center fixed;
-      background-size: contain;
-      font-family: 'Arial', sans-serif;
-    }
-    .countdown-container {
-      position: absolute;
-      top: 55%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
-    #countdown {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 1.4rem;
-      color: white;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="countdown-container">
-    <div id="countdown">Ładowanie...</div>
-  </div>
-
-  <script>
-    const countdownElement = document.getElementById("countdown");
-
-    // Ustaw datę ślubu jako czas w UTC+2 (Polska w lecie)
-    const weddingDate = new Date(Date.UTC(2025, 6, 12, 14, 0, 0)).getTime(); 
-    // 12 lipca 2025, godz. 16:00 czasu polskiego = 14:00 UTC
-
-    function updateCountdown() {
-      const now = new Date();
-      const nowUTC = now.getTime() + now.getTimezoneOffset() * 60000; // przeliczenie na UTC
-      const distance = weddingDate - nowUTC;
-
-      if (distance <= 0) {
-        countdownElement.innerText = "To już dziś!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdownElement.innerText = `${days} dni, ${hours} godz., ${minutes} min, ${seconds} sek`;
-    }
-
-    updateCountdown();
+    updateCountdown(); 
     setInterval(updateCountdown, 1000);
   </script>
 
